@@ -34,7 +34,6 @@ const usuariosGet = async (req = request, res = response) => {
   }
 
   const usuariosPut = async (req, res = response) => {
-    
     const {id} = req.params;
     const {_id, password, google, correo, ...resto} = req.body; //desestructuro el id para que no se tome en cuenta ante la posibilidad de que se reciba
 
@@ -49,6 +48,7 @@ const usuariosGet = async (req = request, res = response) => {
         usuario
     });
   }
+  
   const usuariosPatch = (req, res = response) => {
     
     res.json({
@@ -59,11 +59,11 @@ const usuariosGet = async (req = request, res = response) => {
   const usuariosDelete = async(req, res = response) => {
     
     const {id} = req.params;
+
     //Fisicamente
     //const usuario = await Usuario.findByIdAndDelete(id);
 
-    const usuario = await Usuario.findByIdAndUpdate(id, { estado: false}, {new:true});
-
+    const usuario = await Usuario.findByIdAndUpdate(id, { estado: false}, {new:true}); //soft delete usando update
     res.json(usuario);
   }
 

@@ -33,7 +33,8 @@ const UsuarioSchema = Schema ({
 });
 
 UsuarioSchema.methods.toJSON = function(){//se modifica el metodo
-    const {__v, password, ...usuario} = this.toObject(); //genera instancia y se quita __v, password. Lo demas se guarda en usuario // 
+    const {__v, password, _id, ...usuario} = this.toObject(); //genera instancia y se quita __v, password. Lo demas se guarda en usuario // 
+    usuario.uid = _id;
     return usuario;
 }
 
