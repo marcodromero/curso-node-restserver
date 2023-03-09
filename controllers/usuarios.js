@@ -35,14 +35,14 @@ const usuariosGet = async (req = request, res = response) => {
 
   const usuariosPut = async (req, res = response) => {
     const {id} = req.params;
-    const {_id, password, google, correo, ...resto} = req.body; //desestructuro el id para que no se tome en cuenta ante la posibilidad de que se reciba
+    const {_id, password, google, correo, ...resto} = req.body; //desestructuro el _id, google y correo para que no se tome en cuenta ante la posibilidad de que se reciba
 
     if(password){
       const salt = bcryptjs.genSaltSync();
       resto.password = bcryptjs.hashSync(password, salt);
     }
 
-    const usuario = await Usuario.findByIdAndUpdate(id, resto, {new:true});
+    const usuario = await Usuario.findByIdAndUpdate(id, resto, {new:true});// el new: true permite retornar el objeto actualizadp
 
     res.json({
         usuario

@@ -8,15 +8,17 @@ const {
     tieneRole
 } = require('../middlewares');
 
-const {esRoleValido, emailExiste, existeUsuarioPorId} = require('../helpers/db-validators');
+const {esRoleValido,
+     emailExiste,
+      existeUsuarioPorId
+} = require('../helpers/db-validators');
+
 const { usuariosGet,
         usuariosPost,
         usuariosPut,
         usuariosPatch, 
         usuariosDelete 
 } = require('../controllers/usuarios');
-
-
 
 const router = Router();
 router.get('/', usuariosGet);
@@ -36,13 +38,12 @@ router.post('/', [
     //body('rol', 'No es un rol permitido').isIn(['ADMIN_ROLE', 'USER_ROLE']),
     body('rol').custom(esRoleValido), //Versión simplificada de .custom((rol) => esRoleValido(rol))
     validarCampos
-
 ], usuariosPost);
 
 router.delete('/:id', [
     validarJWT,
     //esAdminRole,
-    tieneRole('ADMIN_ROLE', 'VENTAS_ROLE'),
+    tieneRole('ADMIN_ROLE', 'USER_ROLE'),
     param('id', 'No es un ID valido').isMongoId(), 
     param('id').custom(existeUsuarioPorId),
     validarCampos
