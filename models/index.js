@@ -1,5 +1,3 @@
-
-
 const Categoria = require('./categoria');
 const Role = require('./role');
 const Server = require('./server');
@@ -12,5 +10,4 @@ module.exports = {
     Role,
     Server,
     Usuario,
-    
 }

@@ -1,5 +1,3 @@
-
-
 const dbValidators = required('./db-validators.js');
 const generarJWT = required('./generar-jwt.js');
 const googleVerify = required('./google-verify.js');
