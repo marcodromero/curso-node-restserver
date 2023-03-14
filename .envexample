@@ -1,0 +1,5 @@
+PORT=8080
+MONGODB_CNN=mongodb+srv://...etc
+SECRETORPRIVATEKEY=*********jwt******
+GOOGLE_CLIENT_ID=********googlesign******
+CLOUDINARY_URL=cloudinary://....etc
